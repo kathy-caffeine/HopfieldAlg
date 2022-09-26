@@ -55,10 +55,10 @@ namespace HopfieldApp
         {
             pictureBoxInput.BackColor = backColor;
             pictureBoxRes.BackColor = backColor;
-            known1.Image = new Bitmap("1.png");
-            known2.Image = new Bitmap("2.png");
-            known3.Image = new Bitmap("3.png");
-            known4.Image = new Bitmap("4.png");
+            known1.Image = new Bitmap("../../1.png");
+            known2.Image = new Bitmap("../../2.png");
+            known3.Image = new Bitmap("../../3.png");
+            known4.Image = new Bitmap("../../4.png");
         }
 
         private void recognise_Click(object sender, EventArgs e)
