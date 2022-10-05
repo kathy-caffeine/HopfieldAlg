@@ -12,10 +12,10 @@ namespace HopfieldApp
         static int amount = 4, power = 12;
         public int[] input = Enumerable.Repeat(1, power).ToArray();
         public int[,] known = {
-            { 1,-1,-1,1,-1,-1,1,-1,-1,1,1,1}, //L
-            {-1,1,-1,1,-1,1,-1,1,-1,1,-1,1 }, // chess
-            { 1, 1, 1, -1, -1, 1, -1, -1, 1, -1, -1, 1},  // '
-            {-1,1,-1,-1,1,-1,-1,1,-1,-1,1,-1 } //I
+            { 1,1,1,-1,1,-1,-1,1,-1,-1,1,-1}, // T
+            { 1, 1, 1, 1, -1, -1, 1, -1, -1, 1, -1, -1},  // Г
+            {1,1,-1,1,-1,1,1,1,-1,1,-1,-1 }, // Р
+            {-1,1,-1,1,-1,1,1,1,1,1,-1,1 } // A
         };
         int[,] weight = new int[power, power];
         int[,] tm = new int[power, power];
@@ -26,6 +26,20 @@ namespace HopfieldApp
 
         public int recognition()
         {
+            // Проверить, не равен ли инпут какому-нибудь эталону
+            bool crunch = true;
+            for(int i = 0; i<amount; i++)
+            {
+                for(int j = 0; j<power; j++)
+                {
+                    if (input[j] != known[i, j])
+                    {
+                        crunch = false;
+                        break;
+                    }
+                }
+                if (crunch) return i;
+            }
             // weights
             for (int k = 0; k < amount; k++)
             {
@@ -44,7 +58,7 @@ namespace HopfieldApp
             }
 
             int[] func = new int[power];
-            bool crunch = false; 
+            crunch = false; 
             int counter = 0;
             int maxcount = 200;
             //int suitable = -1;//Индекс подходящей строки

@@ -18,7 +18,7 @@ namespace HopfieldApp
         int step = 50;
         int recognised;
         Hopfield hopfield = new Hopfield();
-        SolidBrush b = new SolidBrush(fontColor);
+        SolidBrush brush = new SolidBrush(fontColor);
         public Form1()
         {
             InitializeComponent();
@@ -47,7 +47,7 @@ namespace HopfieldApp
             g.Clear(backColor);
             for(int i = 0; i<rect.Count; i++)
             {
-                g.FillRectangle(b, rect[i]);
+                g.FillRectangle(brush, rect[i]);
             }
         }
 
@@ -63,6 +63,7 @@ namespace HopfieldApp
 
         private void recognise_Click(object sender, EventArgs e)
         {
+            recognised = -1;
             Graphics g = pictureBoxRes.CreateGraphics();
             g.Clear(backColor);
             recognised = hopfield.recognition();
@@ -75,7 +76,7 @@ namespace HopfieldApp
                     {
                         Rectangle r = new Rectangle(i % 3 * step, i / 3 * step, step, step);
                         rect.Add(r);
-                        g.FillRectangle(b, r);
+                        g.FillRectangle(brush, r);
                     }
                 }
             }
